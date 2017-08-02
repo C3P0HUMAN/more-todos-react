@@ -3,28 +3,28 @@ import React, { Component } from 'react';
 class TodoInput extends Component {
   constructor() {
     super();
-
-    this.state = {
-      newTodo: ''
-    }
   }
 
-  handleChange(e) {
-    this.setState({
-      newTodo: e.target.value
+  childAddTodo(e) {
+    e.preventDefault();
+    this.props.addTodoFunc({
+      title: this.refs.title.value,
+      description: this.refs.description.value,
+      complete: this.refs.complete.value
     })
-  }
-
-  childAddTodo() {
-    this.props.addTodoFunc(this.state.newTodo)
   }
 
   render () {
     return (
-      <div>
-        <input type="text" onChange={this.handleChange.bind(this)} value={this.state.newTodo} />
-        <button onClick={() => this.props.addTodoFunc(this.state.newTodo)}>Submit</button>
-      </div>
+      <form>
+        <input type="text" ref="title" />
+        <input type="text" ref="description" />
+        <select ref="complete">
+          <option value="done sauce">done</option>
+          <option value="not as much">not done</option>
+        </select>
+        <button onClick={this.childAddTodo.bind(this)}>Submit</button>
+      </form>
     )
   }
 }

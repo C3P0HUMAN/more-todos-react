@@ -9,10 +9,14 @@ class App extends Component {
     this.state = {
       todos: [
         {
-          task: 'do things'
+          title: 'do things',
+          description: 'blah',
+          complete: 'done'
         },
         {
-          task: 'do more things'
+          title: 'do more things',
+          description: 'blahhhh',
+          complete: 'not done'
         }
       ]
     }
@@ -20,7 +24,11 @@ class App extends Component {
 
   addTodo(todo, e) {
     this.setState({
-      todos: this.state.todos.concat({task:todo})
+      todos: this.state.todos.concat({
+        title: todo.title,
+        description: todo.description,
+        complete: todo.complete
+      })
     })
   }
 
